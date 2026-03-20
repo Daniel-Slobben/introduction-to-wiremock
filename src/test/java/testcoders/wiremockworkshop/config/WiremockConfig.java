@@ -1,24 +1,25 @@
 package testcoders.wiremockworkshop.config;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.github.tomakehurst.wiremock.client.WireMock;
+import org.jspecify.annotations.NonNull;
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
-public class WiremockConfig {
-    private final WireMockServer wireMockServer;
-    private final WireMock wireMock;
+import static testcoders.wiremockworkshop.config.EnvironmentValues.PORT;
 
-    public WiremockConfig() {
-       wireMockServer = new WireMockServer(EnvironmentValues.PORT);
-       wireMockServer.start();
+public class WiremockConfig implements BeforeEachCallback, AfterEachCallback {
 
-       wireMock = new WireMock("localhost", EnvironmentValues.PORT);
+    private WireMockServer wireMockServer;
+
+    @Override
+    public void beforeEach(@NonNull ExtensionContext context) {
+        wireMockServer = new WireMockServer(PORT); // random port
+        wireMockServer.start();
     }
 
-    public WireMock getWireMock() {
-        return wireMock;
-    }
-
-    public WireMockServer getWireMockServer() {
-        return wireMockServer;
+    @Override
+    public void afterEach(@NonNull ExtensionContext context) {
+        wireMockServer.stop();
     }
 }

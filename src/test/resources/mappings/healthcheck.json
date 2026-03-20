@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/health-check"
+  },
+
+  "response": {
+    "status": 200,
+    "body": "{\"status\": \"Hello World!\"}",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

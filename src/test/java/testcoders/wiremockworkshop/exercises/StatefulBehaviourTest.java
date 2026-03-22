@@ -8,6 +8,7 @@ import io.restassured.response.Response;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import testcoders.wiremockworkshop.config.WiremockConfig;
+import wiremock.org.eclipse.jetty.http.HttpStatus;
 
 class StatefulBehaviourTest {
   private final WireMockServer wireMockServer = new WiremockConfig().getWireMockServer();
@@ -24,8 +25,8 @@ class StatefulBehaviourTest {
     Response response2 = getMovie();
     Response response3 = getMovie();
 
-    assertThat(response.getStatusCode()).isEqualTo(200);
-    assertThat(response2.getStatusCode()).isEqualTo(500);
-    assertThat(response3.getStatusCode()).isEqualTo(200);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK_200);
+    assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR_500);
+    assertThat(response3.getStatusCode()).isEqualTo(HttpStatus.OK_200);
   }
 }

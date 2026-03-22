@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import testcoders.wiremockworkshop.config.WiremockConfig;
+import wiremock.org.eclipse.jetty.http.HttpStatus;
 
 class UrlMatchTest {
   private final WireMockServer wireMockServer = new WiremockConfig().getWireMockServer();
@@ -23,7 +24,7 @@ class UrlMatchTest {
   void urlMatch() {
     Response response = RestAssured.given().baseUri(wireMockServer.baseUrl()).get("health-check");
 
-    assertThat(response.getStatusCode()).isEqualTo(200);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK_200);
   }
 
   @Test
@@ -32,7 +33,7 @@ class UrlMatchTest {
 
     Response response = RestAssured.given().baseUri(wireMockServer.baseUrl()).get("movies/" + uuid);
 
-    assertThat(response.getStatusCode()).isEqualTo(400);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST_400);
   }
 
   @ParameterizedTest
@@ -41,6 +42,6 @@ class UrlMatchTest {
     Response response =
         RestAssured.given().baseUri(wireMockServer.baseUrl()).get("movies/{id}", uuid);
 
-    assertThat(response.getStatusCode()).isEqualTo(200);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK_200);
   }
 }

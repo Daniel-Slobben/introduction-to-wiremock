@@ -1,0 +1,30 @@
+{
+  "mappings": [
+    {
+      "priority": 2,
+      "scenarioName": "Unstable getMovie",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "returnError",
+      "request": {
+        "method": "GET",
+        "urlPattern": "/movies/.*"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "priority": 2,
+      "scenarioName": "Unstable getMovie",
+      "requiredScenarioState": "returnError",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "urlPattern": "/movies/.*"
+      },
+      "response": {
+        "status": 500
+      }
+    }
+  ]
+}

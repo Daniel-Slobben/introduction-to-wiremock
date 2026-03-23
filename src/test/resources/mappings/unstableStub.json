@@ -7,7 +7,7 @@
       "newScenarioState": "returnError",
       "request": {
         "method": "GET",
-        "urlPattern": "/movies/.*"
+        "urlPattern": "/actor/.*"
       },
       "response": {
         "status": 200
@@ -20,7 +20,7 @@
       "newScenarioState": "Started",
       "request": {
         "method": "GET",
-        "urlPattern": "/movies/.*"
+        "urlPattern": "/actor/.*"
       },
       "response": {
         "status": 500

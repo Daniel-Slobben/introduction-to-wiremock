@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/movies/.*"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": "cf39f10c-2701-4b1e-9a0d-638cbcaf64a4",
+      "title": "The Matrix",
+      "releaseDate": [
+        2000,
+        12,
+        31
+      ],
+      "actors": [
+        {
+          "id": "d10e6eea-0598-4a76-b643-5d074f7aa7e3",
+          "name": "Neo"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

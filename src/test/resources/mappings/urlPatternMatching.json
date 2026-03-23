@@ -4,27 +4,19 @@
       "priority": 1,
       "request": {
         "method": "GET",
-        "urlPattern": "/movies/6301b6d9-131e-4022-9f72-7eeb50f3cd7d"
+        "urlPattern": "/actor/6301b6d9-131e-4022-9f72-7eeb50f3cd7d"
       },
       "response": {
-        "status": 400,
-        "body": "{\"status\": \"Hello World!\"}",
-        "headers": {
-          "Content-Type": "application/json"
-        }
+        "status": 400
       }
     },
     {
       "request": {
         "method": "GET",
-        "urlPattern": "/movies/.*"
+        "urlPattern": "/actor/.*"
       },
       "response": {
-        "status": 200,
-        "body": "{\"status\": \"Hello World!\"}",
-        "headers": {
-          "Content-Type": "application/json"
-        }
+        "status": 200
       }
     }
   ]

@@ -16,15 +16,17 @@ class StatefulBehaviourTest {
   private Response getMovie() {
     return RestAssured.given()
         .baseUri(wireMockServer.baseUrl())
-        .get("movies/{id}", UUID.randomUUID());
+        .get("actor/{id}", UUID.randomUUID());
   }
 
   @Test
   void failThenSucceed() {
+    // execute
     Response response = getMovie();
     Response response2 = getMovie();
     Response response3 = getMovie();
 
+    // verify
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK_200);
     assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR_500);
     assertThat(response3.getStatusCode()).isEqualTo(HttpStatus.OK_200);

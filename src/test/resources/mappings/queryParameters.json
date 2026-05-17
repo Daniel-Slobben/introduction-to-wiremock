@@ -1,0 +1,28 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/timetable/",
+        "queryparameters": {
+
+          "datumVan": "2026-01-01T09:32:52Z",
+          "datumTotMet": ".*"
+
+        }
+
+      },
+      "response": {
+        "status": 200,
+        "jsonbody": {
+
+          "film 1": "The Matrix",
+          "film 2": "Star Wars",
+          "film 3": "Forest Gump"
+
+        }
+      }
+    }
+  ]
+}

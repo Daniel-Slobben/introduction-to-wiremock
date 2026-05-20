@@ -5,17 +5,17 @@
       "request": {
         "method": "GET",
         "urlPathPattern": "/timetable/",
-        "queryparameters": {
+        "queryParameters": {
 
-          "datumVan": "2026-01-01T09:32:52Z",
-          "datumTotMet": ".*"
+          "datumVan": {"equalTo": "2026-01-01T09:32:52Z"},
+          "datumTotMet": {"matches": ".*"}
 
         }
 
       },
       "response": {
         "status": 200,
-        "jsonbody": {
+        "jsonBody": {
 
           "film 1": "The Matrix",
           "film 2": "Star Wars",

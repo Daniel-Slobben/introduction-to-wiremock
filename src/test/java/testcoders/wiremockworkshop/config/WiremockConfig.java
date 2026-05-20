@@ -1,13 +1,18 @@
 package testcoders.wiremockworkshop.config;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
 import com.github.tomakehurst.wiremock.http.Request;
 import com.github.tomakehurst.wiremock.http.RequestListener;
 import com.github.tomakehurst.wiremock.http.Response;
 import testcoders.wiremockworkshop.javamappings.JavaMappings;
 
 public class WiremockConfig {
-  private final WireMockServer wireMockServer = new WireMockServer(0);
+  private final WireMockServer wireMockServer = new WireMockServer(WireMockConfiguration.options()
+          .dynamicPort()
+          .templatingEnabled(true)
+          .globalTemplating(false));
 
   public WiremockConfig() {
     wireMockServer.start();

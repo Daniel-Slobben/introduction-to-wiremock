@@ -17,7 +17,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static testcoders.wiremockworkshop.config.ObjectMapperConfig.objectMapper;
 
-class queryParamters {
+class QueryParametersTest {
   private final WireMockServer wireMockServer = new WiremockConfig().getWireMockServer();
 
 
@@ -40,7 +40,9 @@ class queryParamters {
     Response response =
         RestAssured.given()
             .baseUri(wireMockServer.baseUrl())
-            .get("/timetable/datumVan{datumvan}datumTotMet{datumtotmet}", startTime,currentTime);
+            .queryParam("datumVan", startTime.toString())
+            .queryParams("datumTotMet", currentTime.toString())
+            .get("/timetable/");
 
     // verify
     Movie actualMovie = objectMapper.readValue(response.getBody().print(), Movie.class);

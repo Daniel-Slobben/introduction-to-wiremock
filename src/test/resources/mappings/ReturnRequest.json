@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/movies"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {"movieID": "{{randomValue type='UUID'}}"},
+    "transformers": ["response-template"]
+  }
+}

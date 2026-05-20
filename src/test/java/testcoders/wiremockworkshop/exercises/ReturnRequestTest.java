@@ -19,28 +19,26 @@ import static testcoders.wiremockworkshop.config.ObjectMapperConfig.objectMapper
 class ReturnRequestTest {
   private final WireMockServer wireMockServer = new WiremockConfig().getWireMockServer();
 
-  //nog even geen idee hoe uit te werken, maar hierbinnen wil ik vanuit java een stub maken, die
-  //de informatie van het request deels afvangt en teruggeeft in de response. Een create movie entry
-  //bijvoorbeeld waarbij de response de gecreeerde movie van de post actie teruggeeft
   @Test
-  void returnBody() throws JsonProcessingException {
+  void createMovieReturnsGeneratedId() throws JsonProcessingException {
     // prepare
     var actors = Set.of(new Actor(UUID.fromString("d10e6eea-0598-4a76-b643-5d074f7aa7e3"), "Neo"));
-    var expectedMovie =
-        new Movie(
-            UUID.fromString("cf39f10c-2701-4b1e-9a0d-638cbcaf64a4"),
+    var movieToCreate = new Movie(
+            null,
             "The Matrix",
             LocalDate.of(2000, 12, 31),
             actors);
 
     // execute
-    Response response =
-        RestAssured.given()
+    Response response = RestAssured.given()
             .baseUri(wireMockServer.baseUrl())
-            .get("/movies/{id}", UUID.randomUUID());
+            .contentType("application/json")
+            .body(objectMapper.writeValueAsString(movieToCreate))
+            .post("/movies");
 
     // verify
-    Movie actualMovie = objectMapper.readValue(response.getBody().print(), Movie.class);
-    assertThat(actualMovie).usingRecursiveComparison().isEqualTo(expectedMovie);
+    assertThat(response.statusCode()).isEqualTo(201);
+    UUID returnedId = UUID.fromString(response.jsonPath().getString("movieID"));
+    assertThat(returnedId).isNotNull();
   }
 }
